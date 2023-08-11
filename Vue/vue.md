@@ -3,4 +3,5 @@
 2. 静态提升
 3. 事件监听缓存
 ### 2. vue3为什么使用proxy?
-1. proxy可以代理整个对象，define
+1. proxy可以代理整个对象，defineproperty只代理对象上的某个属性
+2. 
