@@ -214,3 +214,5 @@ vue.config.js
 ```
 axios.defaults.baseURL = '/api'
 ```
+
+### 28. 
