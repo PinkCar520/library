@@ -9,7 +9,9 @@
 	2. v-show 是通过display:none来实现的
 	3. 如果是切换不频繁的场景下使用v-if,切换频繁的场景下使用v-show。(优化性能)
 ### 4. 如何理解MVVM? ⭐⭐⭐⭐⭐
-model(模型) view(视图) viewModel()
+	model(模型->内容的数据访问型) view(视图层->结构布局外观) viewModel(暴露公共属性和命令->绑定器在view层和model层之间通信)
+	1. 
+	
 ### 5. v-for的key值的作用是什么？⭐⭐⭐
 ### 6. 谈一下你对vue生命周期的理解 ⭐⭐⭐
 ### 7. vue的修饰符有哪些？⭐
