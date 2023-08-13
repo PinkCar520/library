@@ -27,13 +27,14 @@
 ### 6. 谈一下你对vue生命周期的理解 ⭐⭐⭐
 	vue的生命周期是指Vue实例从创建、挂载、更新到销毁的一系列流程,它允许开发者在不同的阶段插入自定义的代码逻辑,vue的生命周期可以分为以下几个阶段
 	1. 创建阶段
-		beforeCreate: 在实例初始化之后,数据侦听和event、watcher事件配置之前调用
-		created：在实例创建完成后被立即调用,
+		beforeCreate: 在实例初始化之后,数据侦听和事件、侦听器的配置之前同步调用
+		created：在实例创建完成后被立即调用,此时已经完成了,但是还未开始DOM的挂载
 	2. 挂载阶段
-		beforeMount
-		mounted
-	3. 更新阶段
-		beforeUpdate
+		beforeMount：在挂载之前被调用,在这个阶段模板编译完成,但是还未把生成的DOM渲染到页面上
+		mounted：实例被挂载后调用,此时Vue实例已经把生成的DOM渲染到页面
+		应用场景：可以执行DOM操作/执行异步请求。
+	1. 更新阶段
+		beforeUpdate：在数据发生改变后,DOM被更新之前被调用。shi'h
 		updated
 	4. 销毁阶段
 		beforeDestroy
