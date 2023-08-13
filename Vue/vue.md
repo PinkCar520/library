@@ -25,7 +25,19 @@
 	
 
 ### 6. 谈一下你对vue生命周期的理解 ⭐⭐⭐
-	vue的生命周期是指Vue实例从chuang'j
+	vue的生命周期是指Vue实例从创建、挂载、更新到销毁的一系列流程,它允许开发者在不同的阶段插入自定义的代码逻辑,vue的生命周期可以分为以下几个阶段
+	1. 创建阶段
+		beforeCreate: 在实例初始化之后,数据侦听和event、watcher事件配置之前调用
+		created：在实例创建完成后被立即调用,
+	2. 挂载阶段
+		beforeMount
+		mounted
+	3. 更新阶段
+		beforeUpdate
+		updated
+	4. 销毁阶段
+		beforeDestroy
+		destroyed
 ### 7. vue的修饰符有哪些？⭐
 ### 8 . vue如何进行组件通信？ ⭐⭐⭐⭐
 ### 9. keep-alive是什么？使用方式？ ⭐⭐⭐
