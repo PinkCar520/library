@@ -120,14 +120,14 @@ Vuex 是 Vue.js 的官方状态管理库，用于管理应用程序中的共享�
 2. 创建 Vuex Store： `我们在项目中创建一个 Vuex store 实例，通过定义 `state`、`mutations`、`actions` 和 `getters` 等来管理应用的状态和业务逻辑`
 3. 注册 Vuex Store：`在 Vue 应用的入口文件main.js中注册 Vuex。`
 4. 组件内使用：`我们可以使用 `mapState`、`mapMutations`、`mapActions` 和 `mapGetters` 等辅助函数来连接 Vuex 和组件`
-### 18. Vuex 的核心概念是什么？
+### 18. Vuex 的核心概念是什么？⭐
 `Vuex 的核心概念是“单一状态树”和“状态管理模式”。在 Vuex 中，整个应用的状态被存储在一个单一的对象中，称为“状态树”（或“store”）。这个状态树通过 mutations 来修改，通过 actions 来触发异步操作，通过 getters 来计算派生状态。这种状态管理模式使得应用中的状态变化变得可预测和可追踪，同时也方便了多个组件之间的数据共享和通信。`
-### 19. Vuex 的 mutations 和 actions 有什么区别？
+### 19. Vuex 的 mutations 和 actions 有什么区别？⭐⭐
 在 Vuex 中，`mutations` 和 `actions` 都用于处理状态的变更，但它们在功能和使用情境上有一些区别。
 **mutations：**`用于同步地修改状态。每个 mutation 都是一个处理函数，接收当前状态作为参数，可以在其中进行状态的修改。Mutations 应该是同步操作，用于追踪状态的变化历史。`
     
 **actions：**`用于处理异步操作和复杂的业务逻辑。每个 action 都是一个方法，可以在其中执行异步操作，然后通过提交 mutations 来修改状态。`
-### 20. Vuex 的 getters 是什么？它有什么作用？
+### 20. Vuex 的 getters 是什么？它有什么作用？⭐
 `Vuex 的 `getters` 是用于从状态树中派生出新状态的函数。它们类似于组件中的计算属性，但是在 Vuex 中定义，可以在多个组件中共享和复用。`getters` 可以用于对状态进行一些计算、过滤或转换操作，然后供组件使用，从而减少冗余的计算和提高性能`。
 ### 21. vue的响应式原理是什么？⭐⭐⭐
 **Vue2.x**`中是通过数据劫持和发布订阅者模式来实现的,同时利用Object.defineProperty()劫持各个属性的setter和getter,在数据发生改变时发布消息给订阅者,触发对应的监听回调渲染视图。``
