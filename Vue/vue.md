@@ -81,7 +81,12 @@ History模式:
 ### 13. 说一下vue的动态路由 ⭐⭐⭐⭐
 ### 14. 如何解决刷新后二次加载路由 ⭐⭐⭐
 `window.location.reload() // 可能会出现闪屏的问题`
-
+**动态清除注册的路由:** 
+`const router=createRouter() 
+`export function resetRouter(){ `
+	`const newRouter=creatRouter 
+	`router.maycher=newRouter.matcher 
+`}
 ### 15.vue刷新数据丢失如何解决？ ⭐⭐⭐
 **持久化状态管理：** `将需要保留的数据存储到浏览器的本地存储（如 `localStorage` 或 `sessionStorage`）中。在刷新页面后，您可以从本地存储中读取数据并恢复状态`
 **Vuex 持久化插件：** `vuex-persistedstate 来将 Vuex 的状态持久化到本地存储。这样即使刷新页面，Vuex 的状态仍然可以从本地存储中恢复``
