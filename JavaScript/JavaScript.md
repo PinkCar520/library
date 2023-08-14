@@ -1,34 +1,101 @@
 ### 1. JavaScript操作数组的方法有哪些？
-`push()
-pop()
-shift()
-unshift()
-sort()
-reverse()
-splice()
-concat()
-join()
-map()
-filter()
-some()
-reduce()
-isArray()
-findIndex()`
-``
-### 2. JavaScript对数据类的检测方式有哪些？
+`array.push(): 向数组末尾添加一个元素
+`array.pop(): 删除数组的最后一个元素
+
+`array.unshift(): 向数组开始添加一个元素
+`array.shift(): 删除数组的第一个元素
+
+`array.sort(): 对数组元素进行排序，默认按字符串顺序排序
+`array.reverse(): 反转数组中的元素顺序
+
+`array.splice(): 可以在指定位置添加或删除元素，也可以用于替换元素
+`array.slice(): 返回一个从指定位置开始到结束位置的子数组，原数组不变`
+
+`indexOf() 和 lastIndexOf()：分别用于查找元素第一次出现的位置和最后一次出现的位置
+`array.concat(other)：将多个数组合并成一个新数组
+`array.join(): 将数组中的元素连接成一个字符串
+
+`array.map()：遍历数组并对每个元素执行操作，返回操作后的新数组
+`array.filter(): 返回满足条件的所有元素组成的新数组
+`array.forEach(): 遍历数组并对每个元素执行操作，无返回值`
+
+`array.some(): 遍历数组的每个元素，如果其中有任何一个元素满足测试函数的条件，则返回true,否则返回 false`
+`array.reduce(): 从左到右累加,返回一个累积结果，可以是任何类型的值
+
+`includes()： 检查数组是否包含指定元素，返回布尔值`
+`array.isArray(): 判断一个变量是否是数组
+
+`find() 和 findIndex()：find() 返回满足条件的第一个元素，findIndex() 返回满足条件的第一个元素的索引`
+### 2. JavaScript操作字符串的方法有哪些？
+	string.toLocaleLowerCase() 和 string.toLocaleUpperCase()： `将字符串转换为本地化的小写或大写形式`
+	string.replace(/a/,'b'): 查找字符串所有的a,将其替换成b
+	string.split(''): 将字符串拆分成数组，基于指定的分隔符
+	string.trim()：去除字符串两端的空格
+	string.substring(4,7)`: 从字符串中提取子串，其参数为起始索引和结束索引（不包括结束索引处的字符）。
+	string.slice(1,3): 从字符串中提取子串，其参数为起始索引和结束索引（不包括结束索引处的字符）
+	string.substr(2,5): 从字符串中提取子串，其参数为起始索引和子串的长度
+### 3. 基本数据类型、引用数据类型有哪些，区别是什么？
+	1. 基本数据类型:
+		String Number Boolean Undefined Null symbol
+		存放在栈内存里面,保存的是具体的实际值
+	2. 引用数据类型:
+		Array Object Function Date RegExp
+		存放在堆内存里面,保存的是对象在堆内存中的引用地址
+	区别：
+	1. 基本数据类型是不可变的,引用数据类型是可变的,可以通过属性/方法修改
+### 4. JavaScript对数据类的检测方式有哪些？
 `typeof() 
 `instanceof()`
 `constructor()`
 `object.prototype.toString().call()`                     
-### 3. 说一下闭包，闭包有什么缺点？
+### 5. 说一下闭包，闭包有什么缺点？
 *闭包是有权限访问 '其他函数作用域的局部变量' 的函数*
 1. `由于在Js中，变量的作用域属于函数作用域，函数执行后作用域就会被清理，内存也随之收回。但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域的原因，即使上级函数执行完，作用域也不会随之销毁，这时的子函数(闭包),便拥有了访问上级作用域中变量的权限。`
 特点：可以重复利用变量，不会污染全局。一直保存在内存中。
 缺点：闭包较多的时候，会消耗内存导致页面性能下降，在IE浏览器中可能会导致内存泄漏。
 使用场景：防抖，节流
-### 4. 防抖和节流是什么？
-防抖: 避免事件重复触发 使用场景：1. 频繁和服务端交互 2. 输入框的自动保存事件
-节流：每隔一段时间执行一次 使用场景：scroll事件
+### 6. 防抖和节流是什么？
+**防抖：**`在事件触发后，在一定时间内不再触发事件，只有等待一段时间后没有新事件触发，才会执行一次函数
+```
+function debounce(func, delay) {
+  let timer;
+  return function(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+const debouncedFunction = debounce(() => {
+  console.log('Debounced function executed.');
+}, 300);
+```
+应用场景：
+`1. 频繁和服务端交互(高频点击按钮)
+`2. 搜索框的输入
+`3. 窗口大小发生变化`
+**节流：**`指在一段时间内只允许函数执行一次，无论事件触发多频繁。节流常用于限制用户频繁操作
+```
+function throttle(func, interval) {
+  let lastTime = 0;
+  return function(...args) {
+    const currentTime = Date.now();
+    if (currentTime - lastTime >= interval) {
+      func.apply(this, args);
+      lastTime = currentTime;
+    }
+  };
+}
+
+const throttledFunction = throttle(() => {
+  console.log('Throttled function executed.');
+}, 300);
+
+```
+应用场景：
+`1. scroll事件
+`2. 滚动、拖拽`
 ### 5. 哪些操作会导致内存泄漏？
 `Js已经分配内存地址的对象,但是由于长时间没有释放或者没办法清除,造成长期占用内存的现象，会让内存资源大幅浪费，最终导致运行速度慢，甚至崩溃的情况。(不能回收)`
 因素：
@@ -46,11 +113,14 @@ addEventListener('click',函数名,true/false),默认是false(事件冒泡),true
 保存在==栈内存==中,保存的就是一个具体的值
 2. 引用数据类型(复杂数据类型)：*Object Array Function*
 保存在==堆内存==中,声明一个引用类型的变量,保存的是引用类型数据的地址
-### 8. 说一下原型链
-原型是一个普通对象,它是为构造函数的实例共享属性和方法。所有实例中引用的原型都是同一个对象使用prototype可以把方法挂在原型上，内存值保存一份。
-__*proto__ 可以理解为指针,实例对象中的属性,指向了构造函数的原型(prototype)
-一个实例对象在调用属性和方法的时候，会依次从实例本身、构造函数原型、原型的原型上去查找,这样的像链条一样的查找过程叫原型链*。
-
+### 8. 说一下原型链和作用域链的区别
+**原型链：**`指对象之间通过原型（prototype）属性连接起来的链式结构。每个对象都有一个原型对象，它可以是另一个对象，从而形成原型链`
+流程：`当访问一个对象的属性时，如果对象本身没有该属性，JavaScript 会沿着原型链向上查找，直到找到该属性或者到达原型链的顶端(通常是Object.prototype)`
+**作用域链：**`指函数的变量访问规则。每个函数都有自己的作用域，包括其自身的变量和参数，以及外部函数的变量。`
+流程：`当在函数中引用一个变量时，JavaScript 会首先在当前函数的作用域中查找，然后依次向外层函数的作用域查找，直到全局作用域`
+区别：
+	`1. 原型链关注对象之间的继承关系，用于属性的查找和继承
+	`2. 作用域链关注函数内部的变量访问规则，用于变量的查找和作用域控制
 ### ​9. new操作符做了什么？
 1. 先创建一个对象
 2. 把空对象和构造函数通过原型链进行链接
@@ -80,18 +150,36 @@ HTML5规定内容:
 setTimeout最小是4ms
 setInterval最小是10ms
 ### 14. call,appply,bind三者有什么区别
-都是改变this指向和函数的调用,call和apply的功能类似,只是传参的方法不同
-*call方法传的是一个参数列表*
-*apply传递的是一个数组*
-*bind传参后不会立即执行,会返回一个改变this指向的函数*,这个函数还是可以传参的,bind()()
-call方法的性能要比apply好一些,所以call用的更多一点
-### ​15. 如何实现一个深拷贝
-深拷贝就是完全拷贝一份新的对象,会在堆内存中开辟新的空间,拷贝的对象被修改后,原对象不受影响，主要针对引用类型
-`1. 拓展运算符`
-==缺点: 只能拷贝第一层==
-`2. JSON.parse(JSON.stringify())`
-==缺点: 不会拷贝内部函数==
-`3. 利用递归函数实现`
+`都是改变this指向和函数的调用,call和apply的功能类似,
+`第一个参数是要绑定到函数的上下文（this）,只是传参的方法不同
+*call:* `传的是一个参数列表
+*apply：*`传递的是一个数组
+*bind：*`传参后不会立即执行,会返回一个新的函数,绑定了指定的上下文和参数。
+`总结: call方法的性能要比apply好一些,所以call用的更多一点
+### ​15. 如何实现一个深拷贝和浅拷贝，区别是什么
+**浅拷贝：** `浅拷贝是复制对象的一层属性，而不复制嵌套对象或数组的内容。它们都能将源对象的属性浅复制到目标对象`。
+`1. 拓展运算符...`
+`2.Object.assign()` 
+**深拷贝：**
+`深拷贝是复制对象的所有嵌套属性，包括对象和数组的内容。一种深拷贝的实现方式是递归地遍历源对象的每个属性，对于对象和数组递归进行复制。`
+`1. JSON.parse(JSON.stringify())`
+- `会丢失原对象的一些特殊属性和方法，例如函数、正则表达式、日期对象等，因为它们在转换为 JSON 字符串时会被丢弃。
+- `循环引用的对象无法通过这种方式深拷贝，会引发 TypeError。JSON 格式不支持循环引用
+`2. 递归函数实现
+`function deepCopy(obj) {
+  `if (obj === null || typeof obj !== 'object') {
+    `return obj;
+  ``}
+  `const target = Array.isArray(obj) ? [] : {};
+  `for (const key in obj) {
+    `if (obj.hasOwnProperty(key)) {
+      `target[key] = deepCopy(obj[key]);
+    ``}
+  ``}
+  `return target;
+``}
+`const source = { name: 'Alice', details: { age: 30 } };
+`const deepCopied = deepCopy(source);`
 ### 16. 说一下事件循环
 Js是一个单线程的脚本语言
 主线程 执行栈 任务队列 宏任务 微任务
@@ -151,15 +239,15 @@ token: 验证身份的令牌，一般就是用户通过账号密码登录后，�
 5. 渲染页面
 		浏览器会获取HTML和CSS的资源，然后把HTML解析成DOM树
 		再把CSS解析成CSSDOM，把DOM和CSSDOM合并为渲染树，将渲染树的每个节点渲染(绘制)到屏幕上
-### 24. JWT
-JSON Web Token 通过JSON形式作为在web应用中的令牌，可以在各方之问安全的把信息作为JSON对象传输信息、授权
-JWT的认证流程
-1. 前端把账号密码发送给后端的接口
-2. 后端核对账号密码成功后，把用户id等其他信息作为JWT 负载，把它和头部分别进行base64编码拼接后签名，形成一个JWT (token)。
-3. 前端每日请求时都会把了WT放 在HTTP请求头的Authorization宇段内
-4. 后端检查是否存在，如果存在就验证JWT的有效性（签名是否正确，token是否过期）
-5. 验证通过后端使用JWT中包含的用户信息进行其他的操作，并返回对应结果
-简洁、包含性、因为Token 是JSON加密的形式保存在客户端，所以JWT是跨语言的，原则上是任何web形式都支持。
+### 24. JWT 认证流程
+`JSON Web Token 用于在网络间传递信息的开放标准，通常用于认证和授权
+**JWT的认证流程：**
+`1. 前端把账号密码发送给后端的接口
+`2. 服务器核对账号密码成功后，把用户id等其他信息作为JWT 负载，把它和头部分别进行base64编码拼接后签名，形成一个JWT (token)。
+`3. 前端每次请求时都会把JWT放在HTTP请求头的Authorization宇段内
+`4. 后端检查是否存在，如果存在就验证JWT的有效性（签名是否正确，token是否过期）
+`5. 验证通过后端使用JWT中包含的用户信息进行其他的操作,并返回对应结果
+`此外JWT 具有一定的时效性,可以设置过期时间,从而强制用户在一段时间后重新登录以获取新的 JWT
 ### 25. HTTP协议对丁的协议头和请求头有什么？
 1. 请求头信息：
 	Accept: 浏览器告诉服务器所支持的数据类型
@@ -214,5 +302,3 @@ vue.config.js
 ```
 axios.defaults.baseURL = '/api'
 ```
-
-### 28. 
