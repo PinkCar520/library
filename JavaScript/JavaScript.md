@@ -273,32 +273,32 @@ token: 验证身份的令牌，一般就是用户通过账号密码登录后，�
 协商缓存的触发：
 	HTTP1.0: 请求头: if-modified-since 响应头：last-modified
 	HTTP1.1: 请求头: if-none-match 响应头：Etag
-### 27. 说一下什么是同源策略？
+### 27. 同源策略、解决跨域
 http:// www.baidu.com :8080      /index/vue.js
 协议    域名                   端口号 
-如果两个URL 的[协议](https://developer.mozilla.org/zh-CN/docs/Glossary/Protocol)、[端口](https://developer.mozilla.org/zh-CN/docs/Glossary/Port)和[主机](https://developer.mozilla.org/zh-CN/docs/Glossary/Host)都相同的话，则这两个 URL 是同源的。
-有其中一个不一样会产生跨域，img，link，script允许跨域加载资源的标签。
+`如果两个URL 的协议、端口和主机都相同的话，则这两个 URL 是同源的。
+`其中一个不一样都会产生跨域，img，link，script允许跨域加载资源的标签。
 
-JSONP: script标签可以跨域请求资源，将回调函数作为参数拼接在url中。后端收到请求，调用该回调函数，并将数据作为参数返回去，设置响应头返回文档类型为javascript。仅支持GET
+*JSONP：* `script标签可以跨域请求资源，将回调函数作为参数拼接在url中。后端收到请求，调用该回调函数，并将数据作为参数返回去，设置响应头返回文档类型为javascript。仅支持GET
 
-CORS：后端设置`Access-Control-Allow-Origin`响应头为目标`host`
+*CORS:* `后端设置 Access-Control-Allow-Origin 响应头为目标host`
 
-Proxy :  通过该服务器转发请求至目标服务器，得到结果再转发给前端，但是最终发布上线时如果web应用和接口服务器不在一起仍会跨域
+*Proxy:* `通过该服务器转发请求至目标服务器，得到结果再转发给前端，但是最终发布上线时如果web应用和接口服务器不在一起仍会跨域
 
-vue.config.js
+`vue.config.js
 ```
  proxy: {
-            '/api': { // '/api'是代理标识，用于告诉node，url前面是/api的就是使用代理的
-                target: "http://xxx.xxx.xx.xx:8080", //目标地址，一般是指后台服务器地址
-                changeOrigin: true, //是否跨域
-                pathRewrite: { // pathRewrite 的作用是把实际Request Url中的'/api'用""代替
-                    '^/api': "" 
+    '/api': {  '/api'是代理标识，url前面是/api的就是使用代理的
+        target: "http://xxx.xx.com:8080", 目标地址，一般是指后台服务器地址
+        changeOrigin: true, 是否跨域
+        pathRewrite: { pathRewrite 的作用是把实际Request Url中的'/api'用""代替
+            '^/api': "" 
                 }
             }
         }
 ```
 
-通过axios发送请求_配置请求的根路径
+`通过axios发送请求_配置请求的根路径
 ```
 axios.defaults.baseURL = '/api'
 ```
